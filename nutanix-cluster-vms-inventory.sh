@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 ## @Descr  :  Use REST API to gather VMs information on Nutanix cluster
-##            Path inventory file : $HOME/NutanixClusterInventory/Nutanix-VMs-Inventory-$TODAY.csv
+##            CSV with inventory of the VMs will be create on : $HOME/NutanixClusterInventory/Nutanix-VMs-Inventory-$TODAY.csv
 ##
 ## @Author :  Vittorio Milazzo
 ##
@@ -58,8 +58,8 @@
 ## Insert your cluster Ip address and user login here
 ClusterLogin=""
 ClusterPwd= # For security reasons don't insert password here! You will be asked to enter it when the script is run
-PrismCentralIp="192.168.253.101" # v3 APIs
-ClusterIp="192.168.253.100"
+PrismCentralIp="192.168.100.101" # v3 APIs
+ClusterIp="192.168.100.100"
 TcpPort="9440"
 
 ## Called commands
@@ -114,7 +114,6 @@ Create csv file with inventory of VMs inside cluster
 
 
 function checkRequired () {
-
   local AuditPkg=true
   local required
   declare -A required=( [jq]="$JQ" [curl]="$CURL" )
@@ -149,7 +148,6 @@ function validateIp () {
 
 
 function validateLogin () {
-
   if [[ -z $ClusterLogin ]] ; then
     echo -e "\nNutanix username not yet defined. Insert username with wich you want to connect to cluster"
     read ClusterLogin
@@ -171,15 +169,14 @@ function validateLogin () {
 }
 
 
-## <File write Version> (replaced frim array usage)
+## <File write Version> (replaced from array usage)
 ########################################################################################################
 ## Get all VMs list with basic info (VM_name and UUID basically)                                      ##
 ## and generate file with results                                                                     ##
 ##                                                                                                    ##
 ## for specific Cluster (restricted to only one cluster because of <$ClusterIp>  query pointer)       ##
 ########################################################################################################
-#function getListVms ()
-#{
+#function getListVms () {
 #  echo > $VMsList # Clean file content
 #  ## query con API v2
 #  $CURL -X GET \
@@ -205,7 +202,6 @@ function getListVms () {
     ExCode=111
     return $ExCode
   fi
-
   ## API v.2 query
   VMsList=( \
   "$($CURL -X GET \
@@ -362,12 +358,12 @@ VcpuPerSocket \
 
     ## Debug
     # echo "${VarName[$CountVar]}"
-
-    if [[ "${VarName[$CountVar]}" =~ ";" ]]
-    then
-      echo "found: ${VarName[$CountVar]}"
-      read
-    fi
+    #
+    #if [[ "${VarName[$CountVar]}" =~ ";" ]]
+    #then
+    #  echo "found: ${VarName[$CountVar]}"
+    #  read
+    #fi
 
     if [[ -z "${VarName[$CountVar]}" ]]
     then
