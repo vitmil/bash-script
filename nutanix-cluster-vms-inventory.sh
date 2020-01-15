@@ -3,6 +3,11 @@
 ## @Descr  :  Use REST API to gather VMs information on Nutanix cluster
 ##            CSV with inventory of the VMs will be create on : $HOME/NutanixClusterInventory/Nutanix-VMs-Inventory-$TODAY.csv
 ##
+## Inventory include info about:
+##
+## VM Name, State, VM uuid, OS Ver, Creation Time, VM Descr, Cluster, Hypervisor, Disk Mb, IP add, Subnet Name, Ip Type, Subnet Mask,
+## Vlan Mode, Gateway, DNS Server, NGT installation, NGT state, NGT ver, NGT features, NGT iso cd, Memory, Vcpu per socket
+##
 ## @Author :  Vittorio Milazzo
 ##
 ## @Ver   :   0.1-beta1 - 27/12/2019
@@ -399,6 +404,8 @@ done
 
   ## Insert $HeadTitle in the beggining of file
   sed -i "1s/^/$HeadTitle\n/" $InventoryFile
+
+  echo -e "\nInventory file created : $InventoryFile\n"
 }
 
 
