@@ -8,7 +8,7 @@
 ## VM Name, State, VM uuid, OS Ver, Creation Time, VM Descr, Cluster, Hypervisor, Disk Mb, IP add, Subnet Name, Ip Type, Subnet Mask,
 ## Vlan Mode, Gateway, DNS Server, NGT installation, NGT state, NGT ver, NGT features, NGT iso cd, Memory, Vcpu per socket
 ##
-## @Author :  Vittorio Milazzo
+## @Author :  Vittorio Milazzo - vittorio.milazzo@gmail.com
 ##
 ## @Ver   :   0.1-beta1 - 27/12/2019
 #
