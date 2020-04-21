@@ -78,7 +78,7 @@ function showInfo () {
   local NameServer="8.8.8.8"
   local myPubIp=$($WGET http://ipinfo.io/ip -qO -)
   local netName=$($WHOIS $myPubIp | grep "netname" | awk  '{ print $2 }')
-  local nslookupRes=$($NSLOOKUP --dns-ip=$NameServer $myPubIp | grep "name[[:space:]]=[[:space:]]" | awk '{ print $NF }')
+  local nslookupRes=$($NSLOOKUP $myPubIp $NameServer | grep "name[[:space:]]=[[:space:]]" | awk '{ print $NF }')
 
   echo -e "\nHostname\t\t->\t$(hostname -f)"
   echo -e "Main Ip address\t\t->\t$IpMain"
